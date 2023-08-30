@@ -12,6 +12,8 @@ cd $DJANGODIR
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
+echo "test"
+
 echo $POSTGRES_USER
 
 echo "Waiting for db initialization..."
