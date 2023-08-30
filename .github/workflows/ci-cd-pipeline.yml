@@ -43,12 +43,8 @@ jobs:
 
       - name: Run a simple test to ensure the application loads correctly
         run: |
-          # Install required packages (adjust as needed)
-          pip install -r requirements.txt
-
-          # Run a simple test to check if the application loads
-          python manage.py check
-
+          ls
+          docker run --rm itachi44/dj-devops:${{ github.run_number }} python manage.py test
 
       - name: Push the image
         uses: docker/build-push-action@v4
