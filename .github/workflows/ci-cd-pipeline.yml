@@ -44,7 +44,8 @@ jobs:
       - name: Run a simple test to ensure the application loads correctly
         run: |
           ls
-          docker run --rm itachi44/dj-devops:${{ github.run_number }} python manage.py test
+          python --version
+          docker run --rm itachi44/dj-devops:${{ github.run_number }} python DjDevOps manage.py test
 
       - name: Push the image
         uses: docker/build-push-action@v4
