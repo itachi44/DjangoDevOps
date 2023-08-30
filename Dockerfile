@@ -37,6 +37,9 @@ RUN chmod +x entrypoint.sh
 # Expose port
 EXPOSE 8000
 
+# Install curl (it is needed for tests)
+RUN apt-get update && apt-get install -y curl
+
 # set entrypoint
 ENTRYPOINT ["./entrypoint.sh"]
 
