@@ -27,9 +27,6 @@ jobs:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
-      - name: List Docker images
-        run: docker images
-
       - name: Build Docker image
         id: build-image
         uses: docker/build-push-action@v4
@@ -48,6 +45,12 @@ jobs:
             ENV_MODE=${{ secrets.ENV_MODE }} 
             SECRET_KEY=${{ secrets.SECRET_KEY }} 
 
+      - name: Store date as an output
+        run: echo "DOCKER_IMAGE_TAG=${{ steps.current_date.outputs.date }}"
+
+      - name: List Docker images
+        run: docker images
+        
       - name: Push Docker image to registry
         run: |
-          docker push itachi44/dj-devops:${{ steps.current_date.outputs.date }}
+          docker push itachi44/dj-devops:${{ env.DOCKER_IMAGE_TAG }}
