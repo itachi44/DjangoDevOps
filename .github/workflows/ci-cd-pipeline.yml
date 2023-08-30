@@ -44,7 +44,7 @@ jobs:
       - name: Run a simple test to ensure the application loads correctly
         run: |
           # Use curl to request the home page of your Django app
-          response_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/)
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" http://host.docker.internal:8000/)
           if [ $response_code -eq 200 ]; then
             echo "Application is running and responding correctly."
           else
