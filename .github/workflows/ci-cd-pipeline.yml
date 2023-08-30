@@ -41,7 +41,16 @@ jobs:
             ENV_MODE=${{ secrets.ENV_MODE }} 
             SECRET_KEY=${{ secrets.SECRET_KEY }} 
 
-        
+      - name: Run a simple test to ensure the application loads correctly
+        run: |
+          # Use curl to request the home page of your Django app
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/)
+          if [ $response_code -eq 200 ]; then
+            echo "Application is running and responding correctly."
+          else
+            echo "Application did not respond as expected (HTTP status code: $response_code)."
+            exit 1
+          fi
 
       - name: Build and push
         uses: docker/build-push-action@v4
