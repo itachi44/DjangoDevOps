@@ -41,9 +41,11 @@ jobs:
             ENV_MODE=${{ secrets.ENV_MODE }} 
             SECRET_KEY=${{ secrets.SECRET_KEY }} 
 
-      - name: List Docker images
-        run: docker images
         
-      - name: Push Docker image to registry
-        run: |
-          docker push itachi44/dj-devops:${{ github.run_number }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: itachi44/dj-devops:${{ github.run_number }}
