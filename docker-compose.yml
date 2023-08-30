@@ -4,8 +4,8 @@ services:
     image: postgres
     container_name: postgres
     restart: always
-    env_file:
-      - ./DjDevOps/DjDevOps/settings/.env
+    #env_file:
+      #- ./DjDevOps/DjDevOps/settings/.env
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:
@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: web-app
-    env_file: ./DjDevOps/DjDevOps/settings/.env
+    #env_file: ./DjDevOps/DjDevOps/settings/.env
     volumes:
       - static_files:/home/app/webapp/static
     ports:

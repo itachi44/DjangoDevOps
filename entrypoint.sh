@@ -12,10 +12,6 @@ cd $DJANGODIR
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
-echo "test"
-
-echo $POSTGRES_USER
-
 echo "Waiting for db initialization..."
 python manage.py check --database default > /dev/null 2> /dev/null
 until [ $? -eq 0 ];
