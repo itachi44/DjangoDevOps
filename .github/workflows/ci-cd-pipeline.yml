@@ -25,7 +25,7 @@ jobs:
 
 
       - name: Build Docker Compose images
-        env:  # Define the environment variables
+        env:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }} 
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }} 
           DATABASE_PROD_HOST: ${{ secrets.DATABASE_PROD_HOST }} 
