@@ -9,6 +9,14 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
 
+    env:
+      POSTGRES_USER:${{ secrets.POSTGRES_USER }} 
+      POSTGRES_PASSWORD:${{ secrets.POSTGRES_PASSWORD }} 
+      DATABASE_PROD_HOST:${{ secrets.DATABASE_PROD_HOST }} 
+      POSTGRES_DB:${{ secrets.POSTGRES_DB }} 
+      SECRET_KEY:${{ secrets.PRODUCTION_SECRET_KEY }} 
+      ENV_MODE:${{ secrets.ENV_MODE }} 
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,32 +31,30 @@ jobs:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
-      - name: Build and push Docker image
-        id: build-image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: itachi44/dj-devops:${{ github.run_number }}
-          build-args: |
-            POSTGRES_USER=${{ secrets.POSTGRES_USER }} 
-            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} 
-            DATABASE_PROD_HOST=${{ secrets.DATABASE_PROD_HOST }} 
-            POSTGRES_DB=${{ secrets.POSTGRES_DB }} 
-            SECRET_KEY=${{ secrets.PRODUCTION_SECRET_KEY }} 
-            ENV_MODE=${{ secrets.ENV_MODE }} 
-            SECRET_KEY=${{ secrets.SECRET_KEY }} 
+
+      - name: Build and push Docker Compose images
+        id: build-compose
+        run: |
+          docker-compose config
+          docker-compose build
+          docker-compose push
+
+      # - name: Build and push Docker image
+      #   id: build-image
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: .
+      #     file: ./Dockerfile
+      #     push: true
+      #     tags: itachi44/dj-devops:${{ github.run_number }}
+      #     build-args: |
+      #       POSTGRES_USER=${{ secrets.POSTGRES_USER }} 
+      #       POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} 
+      #       DATABASE_PROD_HOST=${{ secrets.DATABASE_PROD_HOST }} 
+      #       POSTGRES_DB=${{ secrets.POSTGRES_DB }} 
+      #       SECRET_KEY=${{ secrets.PRODUCTION_SECRET_KEY }} 
+      #       ENV_MODE=${{ secrets.ENV_MODE }} 
 
       - name: Run a simple test to ensure the application loads correctly
         run: |
-          ls
-          python --version
           docker run --rm itachi44/dj-devops:${{ github.run_number }} python DjDevOps manage.py test
-
-      - name: Push the image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: itachi44/dj-devops:${{ github.run_number }}
