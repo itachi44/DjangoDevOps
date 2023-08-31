@@ -35,7 +35,7 @@ jobs:
 
       - name: Build Docker Compose images
         run: |
-          docker-compose up -f docker-compose-dev.yml --build
+          docker-compose up -f docker-compose-dev.yml --build --force-recreate
           docker images
 
       # - name: Run a simple test to ensure the application loads correctly
