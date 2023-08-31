@@ -43,7 +43,7 @@ jobs:
       #     docker tag "dj-devops_db" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:db-$DOCKER_TAG"
       #     docker push "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:db-$DOCKER_TAG"
 
-      - name: Tag and push app image
+      - name: Tag and push web-app image
         run: |
           IMAGE_ID=$(docker inspect -f '{{.Image}}' djangodevops_web-app)
           DOCKER_TAG="${{ github.run_number }}"
