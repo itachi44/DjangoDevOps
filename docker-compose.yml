@@ -2,7 +2,7 @@ version: "3.9"
 services:
   db:
     image: postgres
-    container_name: postgres
+    container_name: db
     restart: always
     env_file:
       - ./DjDevOps/DjDevOps/settings/.env
