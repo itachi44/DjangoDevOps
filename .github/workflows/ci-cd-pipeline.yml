@@ -25,6 +25,13 @@ jobs:
 
 
       - name: Build Docker Compose images
+        env:  # Define the environment variables
+          POSTGRES_USER:${{ secrets.POSTGRES_USER }} 
+          POSTGRES_PASSWORD:${{ secrets.POSTGRES_PASSWORD }} 
+          DATABASE_PROD_HOST:${{ secrets.DATABASE_PROD_HOST }} 
+          POSTGRES_DB:${{ secrets.POSTGRES_DB }} 
+          SECRET_KEY:${{ secrets.PRODUCTION_SECRET_KEY }} 
+          ENV_MODE:${{ secrets.ENV_MODE }} 
         run: |
           docker-compose up --build
 
