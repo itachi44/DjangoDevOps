@@ -5,10 +5,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      DATABASE_PROD_HOST: ${DATABASE_PROD_HOST}
       POSTGRES_DB: ${POSTGRES_DB}
-      SECRET_KEY: ${SECRET_KEY}
-      ENV_MODE: ${ENV_MODE} 
     container_name: postgres
     restart: always
     volumes:
