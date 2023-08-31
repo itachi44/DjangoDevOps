@@ -12,11 +12,11 @@ services:
       - "5432:5432"
     networks:
       - dj-network
-    healthcheck :
-      test: [ "CMD", "pg_isready", "-q", "-d", "usersdb", "-U", "djuser" ]
-      interval : 5s
-      timeout : 5s
-      retries : 5
+    # healthcheck :
+    #   test: [ "CMD", "pg_isready", "-q", "-d", "usersdb"]
+    #   interval : 5s
+    #   timeout : 5s
+    #   retries : 5
 
 
   web-app:
@@ -24,7 +24,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: web-app
-    env_file: ./DjDevOps/DjDevOps/settings/.env
+    env_file: 
+      - ./DjDevOps/DjDevOps/settings/.env
     volumes:
       - static_files:/home/app/webapp/static
     ports:
