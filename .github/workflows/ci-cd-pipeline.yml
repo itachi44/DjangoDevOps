@@ -38,19 +38,14 @@ jobs:
           docker-compose up -d --build --force-recreate
           docker images
 
-      # - name: push the database service
-      #   run: |
-      #     docker tag "dj-devops_db" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:db-$DOCKER_TAG"
-      #     docker push "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:db-$DOCKER_TAG"
-
       - name: Tag and push web-app image
         run: |
-          IMAGE_ID="djangodevops_web-app"
+          IMAGE_ID=$(docker inspect -f '{{.Image}}' web-app)
           DOCKER_TAG="${{ github.run_number }}"
           REPO_NAME="dj-devops"
           docker tag "$IMAGE_ID" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:$DOCKER_TAG"
           docker push "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:$DOCKER_TAG"
 
-      # - name: Run a simple test to ensure the application loads correctly
-      #   run: |
-      #     python ./DjDevOps/manage.py test
+      - name: Run a simple test to ensure the application loads correctly
+        run: |
+          python ./DjDevOps/manage.py test

@@ -33,8 +33,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    links:
-      - postgres:postgres
     restart: always
     networks:
       - dj-network
@@ -50,4 +48,3 @@ volumes:
 
 networks:
   dj-network:
-    driver: bridge
