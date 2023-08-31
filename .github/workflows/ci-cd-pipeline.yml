@@ -36,6 +36,12 @@ jobs:
       - name: Build Docker Compose images
         run: |
           docker-compose up -d --build --force-recreate
+          docker images
+
+      # - name: push the database service
+      #   run: |
+      #     docker tag "dj-devops_db" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:db-$DOCKER_TAG"
+      #     docker push "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:db-$DOCKER_TAG"
 
       - name: Tag and push web-app image
         run: |
