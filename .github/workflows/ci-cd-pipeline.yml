@@ -42,8 +42,8 @@ jobs:
           IMAGE_ID=$(docker inspect -f '{{.Image}}' web-app)
           DOCKER_TAG="${{ github.run_number }}"
           REPO_NAME="dj-devops"
-          docker tag "$IMAGE_ID" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME/web-app:$DOCKER_TAG"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME/web-app:$DOCKER_TAG"
+          docker tag "$IMAGE_ID" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:$DOCKER_TAG"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:$DOCKER_TAG"
 
       # - name: Run a simple test to ensure the application loads correctly
       #   run: |
