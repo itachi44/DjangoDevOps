@@ -48,4 +48,5 @@ jobs:
 
       - name: Run a simple test to ensure the application loads correctly
         run: |
+          pip install -r requirements.txt
           python ./DjDevOps/manage.py test
