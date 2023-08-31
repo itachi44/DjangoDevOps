@@ -1,0 +1,52 @@
+[
+    {
+      "model": "users.account",     
+      "pk": 1,
+      "fields": {
+        "first_name": "Sadio",
+        "last_name": "Mané",
+        "username": "mane10",
+        "email": "smane@gmail.com"
+      }
+    },
+    {
+      "model":  "users.account",     
+      "pk": 2,
+      "fields": {
+        "first_name": "Abdoulaye",
+        "last_name": "Sow",
+        "username": "layesow",
+        "email": "slaye@gmail.com"
+      }
+    },
+    {
+        "model":  "users.account",     
+        "pk": 3,
+        "fields": {
+          "first_name": "Farimata",
+          "last_name": "Ngom",
+          "username": "ngfary",
+          "email": "ngfary@gmail.com"
+        }
+      },
+      {
+        "model":  "users.account",     
+        "pk": 4,
+        "fields": {
+          "first_name": "Aida",
+          "last_name": "SOW",
+          "username": "saida",
+          "email": "saida@gmail.com"
+        }
+      },
+      {
+        "model":  "users.account",     
+        "pk": 5,
+        "fields": {
+          "first_name": "Kadia",
+          "last_name": "Bassoum",
+          "username": "kbassoum",
+          "email": "bkadia@gmail.com"
+        }
+      }
+  ]

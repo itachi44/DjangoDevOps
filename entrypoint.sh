@@ -13,17 +13,18 @@ export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
 echo "Waiting for db initialization..."
-python manage.py check --database default
+python manage.py check --database default > /dev/null 2> /dev/null
 until [ $? -eq 0 ];
 do
   sleep 2
-  python manage.py check --database default
+  python manage.py check --database default > /dev/null 2> /dev/null
 done
 echo "Connected!"
 
 python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --noinput
+python manage.py loaddata ./users/fixtures/users_data.json
 
 exec /usr/local/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
 	--name $NAME \
