@@ -13,11 +13,10 @@ services:
     networks:
       - dj-network
     healthcheck :
-      test: [ "CMD", "pg_isready", "-q", "-d", "usersdb"]
+      test: [ "CMD", "pg_isready", "-q", "-d", "usersdb","-U", "djuser"]
       interval : 5s
       timeout : 5s
       retries : 5
-      #
 
 
   web-app:
