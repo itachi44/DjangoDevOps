@@ -30,9 +30,8 @@ services:
       - static_files:/home/app/webapp/static
     ports:
       - "8000:8000"
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: 
+      - db
     restart: always
     networks:
       - dj-network
