@@ -27,7 +27,7 @@ jobs:
       - name: Build Docker Compose images
         id: build-compose
         run: |
-          run: docker-compose -f "docker-compose.yml" up -d --build
+          run: docker-compose up --build
 
       # - name: Build and push Docker image
       #   id: build-image
