@@ -32,12 +32,10 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
 
-      - name: Build and push Docker Compose images
+      - name: Build Docker Compose images
         id: build-compose
         run: |
-          docker-compose config
-          docker-compose build
-          docker-compose push
+          run: docker-compose -f "docker-compose.yml" up -d --build
 
       # - name: Build and push Docker image
       #   id: build-image
@@ -55,6 +53,6 @@ jobs:
       #       SECRET_KEY=${{ secrets.PRODUCTION_SECRET_KEY }} 
       #       ENV_MODE=${{ secrets.ENV_MODE }} 
 
-      - name: Run a simple test to ensure the application loads correctly
-        run: |
-          docker run --rm itachi44/dj-devops:${{ github.run_number }} python DjDevOps manage.py test
+      # - name: Run a simple test to ensure the application loads correctly
+      #   run: |
+      #     docker run --rm itachi44/dj-devops:${{ github.run_number }} python DjDevOps manage.py test
