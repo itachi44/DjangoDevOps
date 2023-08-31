@@ -35,7 +35,7 @@ jobs:
 
       - name: Build Docker Compose images
         run: |
-          docker-compose up --build --force-recreate
+          docker-compose up -d --build --force-recreate
 
       - name: Tag and push web-app image
         run: |
@@ -46,4 +46,4 @@ jobs:
 
       # - name: Run a simple test to ensure the application loads correctly
       #   run: |
-      #     docker run --rm itachi44/dj-devops:${{ github.run_number }} python DjDevOps manage.py test
+      #     python ./DjDevOps/manage.py test
