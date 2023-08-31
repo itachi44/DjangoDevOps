@@ -45,7 +45,7 @@ jobs:
 
       - name: Tag and push web-app image
         run: |
-          IMAGE_ID=$(docker inspect -f '{{.Image}}' djangodevops_web-app)
+          IMAGE_ID="djangodevops_web-app"
           DOCKER_TAG="${{ github.run_number }}"
           REPO_NAME="dj-devops"
           docker tag "$IMAGE_ID" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME:$DOCKER_TAG"
