@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+  labels:
+    app: django
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-app
+  template:
+    metadata:
+      labels:
+        app: django-app
+    spec:
+      containers:
+        - image: itachi44/dj-devops:67  # Spécifiez l'image Docker à utiliser
+          name: django
+          ports:
+            - containerPort: 8000
+              name: gunicorn
+          env:
+            - name: DATABASE_HOST
+              value: postgres-service
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: database
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django-secrets
+                  key: secret_key
+            - name: ENV_MODE
+              valueFrom:
+                secretKeyRef:
+                  name: django-secrets
+                  key: env_mode
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-service
+  labels:
+    app: django-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: django-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
