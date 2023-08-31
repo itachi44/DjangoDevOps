@@ -15,7 +15,7 @@ spec:
         app: django-app
     spec:
       containers:
-        - image: itachi44/dj-devops:67  # Spécifiez l'image Docker à utiliser
+        - image: itachi44/dj-devops:67
           name: django
           ports:
             - containerPort: 8000
