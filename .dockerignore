@@ -2,7 +2,6 @@ env/
 **/management/
 __pycache__/
 staticfiles
-.env
 *.pyc
 .idea
 *.DS_Store
@@ -11,11 +10,9 @@ test.sh
 **/__pycache__
 **/.venv
 **/.dockerignore
-**/.env
 **/.git
 **/.gitignore
 **/.project
-**/.settings
 **/.toolstarget
 **/.vs
 **/.vscode
