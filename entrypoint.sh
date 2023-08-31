@@ -12,17 +12,12 @@ cd $DJANGODIR
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
-
-echo 'tessssssst'
-
-echo $POSTGRES_DB
-
 echo "Waiting for db initialization..."
-python manage.py check --database default > /dev/null 2> /dev/null
+python manage.py check --database default
 until [ $? -eq 0 ];
 do
   sleep 2
-  python manage.py check --database default > /dev/null 2> /dev/null
+  python manage.py check --database default
 done
 echo "Connected!"
 
