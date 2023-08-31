@@ -35,24 +35,8 @@ jobs:
 
       - name: Build Docker Compose images
         run: |
-          cat ./DjDevOps/DjDevOps/settings/.env
           docker-compose up -f docker-compose-dev.yml --build
-
-      # - name: Build and push Docker image
-      #   id: build-image
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: .
-      #     file: ./Dockerfile
-      #     push: true
-      #     tags: itachi44/dj-devops:${{ github.run_number }}
-      #     build-args: |
-      #       POSTGRES_USER=${{ secrets.POSTGRES_USER }} 
-      #       POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} 
-      #       DATABASE_PROD_HOST=${{ secrets.DATABASE_PROD_HOST }} 
-      #       POSTGRES_DB=${{ secrets.POSTGRES_DB }} 
-      #       SECRET_KEY=${{ secrets.PRODUCTION_SECRET_KEY }} 
-      #       ENV_MODE=${{ secrets.ENV_MODE }} 
+          docker images
 
       # - name: Run a simple test to ensure the application loads correctly
       #   run: |
