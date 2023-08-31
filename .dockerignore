@@ -20,7 +20,6 @@
 # **/*.dbmdl
 # **/*.jfm
 # **/bin
-# **/charts
 # **/obj
 # **/secrets.dev.yaml
 # **/values.dev.yaml
