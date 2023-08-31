@@ -35,6 +35,7 @@ jobs:
 
       - name: Build Docker Compose images
         run: |
+          cat ./DjDevOps/DjDevOps/settings/.env
           docker-compose up --build --force-recreate
           docker images
 

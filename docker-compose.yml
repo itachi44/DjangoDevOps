@@ -14,7 +14,7 @@ services:
       - dj-network
     # healthcheck :
     #   test: [ "CMD", "pg_isready", "-q", "-d", "usersdb"]
-    #   interval : 5s
+    #   interval : 10s
     #   timeout : 5s
     #   retries : 5
 
