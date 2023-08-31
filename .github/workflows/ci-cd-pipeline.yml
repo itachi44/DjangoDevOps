@@ -37,12 +37,13 @@ jobs:
         run: |
           docker-compose up -d --build --force-recreate
 
-      - name: Tag and push the app image
+      - name: Tag and push web-app image
         run: |
-          IMAGE_ID=$(docker inspect -f '{{.Image}}' dj-devops)
+          IMAGE_ID=$(docker inspect -f '{{.Image}}' web-app)
           DOCKER_TAG="${{ github.run_number }}"
-          docker tag "$IMAGE_ID" "${{ secrets.DOCKERHUB_USERNAME }}/dj-devops:$DOCKER_TAG"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/dj-devops:$DOCKER_TAG"
+          REPO_NAME="dj-devops"
+          docker tag "$IMAGE_ID" "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME/web-app:$DOCKER_TAG"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/$REPO_NAME/web-app:$DOCKER_TAG"
 
       # - name: Run a simple test to ensure the application loads correctly
       #   run: |
