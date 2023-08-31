@@ -9,14 +9,6 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
 
-    env:
-      POSTGRES_USER:${{ secrets.POSTGRES_USER }} 
-      POSTGRES_PASSWORD:${{ secrets.POSTGRES_PASSWORD }} 
-      DATABASE_PROD_HOST:${{ secrets.DATABASE_PROD_HOST }} 
-      POSTGRES_DB:${{ secrets.POSTGRES_DB }} 
-      SECRET_KEY:${{ secrets.PRODUCTION_SECRET_KEY }} 
-      ENV_MODE:${{ secrets.ENV_MODE }} 
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
