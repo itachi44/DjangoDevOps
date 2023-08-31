@@ -25,7 +25,6 @@ jobs:
 
 
       - name: Build Docker Compose images
-        id: build-compose
         run: |
           run: docker-compose up --build
 
