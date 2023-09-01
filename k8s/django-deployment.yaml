@@ -15,7 +15,7 @@ spec:
         app: django-app
     spec:
       containers:
-        - image: itachi44/dj-devops:67
+        - image: itachi44/dj-devops:68
           name: django
           ports:
             - containerPort: 8000
@@ -50,6 +50,11 @@ spec:
                 secretKeyRef:
                   name: django-secrets
                   key: env_mode
+            - name: DATABASE_PROD_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: django-secrets
+                  key: db_host
 
 ---
 apiVersion: v1

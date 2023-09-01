@@ -3,7 +3,7 @@ from .base import *
 
 
 ALLOWED_HOSTS = ["*"]
-SECRET_KEY=env('PRODUCTION_SECRET_KEY')
+SECRET_KEY=os.getenv('PRODUCTION_SECRET_KEY')
 DEBUG=False
 
 DATABASES = {
