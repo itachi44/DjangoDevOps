@@ -19,7 +19,7 @@ It's a django application with a single view, which returns the list of users in
 
 ### Dockerization:
 
-We have written a Dockerfile for the Django application and use Docker Compose to run the Django app and the Postgres DB in your local development environment.
+We have written a Dockerfile for the Django application and use Docker Compose to run the Django app and the Postgres DB in local development environment.
 
 ![Dockerfile](assets/dockerfile.jpg)
 
@@ -34,7 +34,7 @@ We have written a Dockerfile for the Django application and use Docker Compose t
 - Named volumes are used for data persistence and serving static files.
 - A custom network connects the services, allowing them to communicate within the same network.
 
-Overall, this setup provides a robust and reproducible environment for running your Django application and PostgreSQL database in a local development environment using Docker and Docker Compose.
+Overall, this setup provides a robust and reproducible environment for running the Django application and PostgreSQL database in a local development environment using Docker and Docker Compose.
 
 ### CI/CD Pipeline Setup:
 
@@ -42,7 +42,7 @@ we have implemented a GitHub Actions workflow. Whenever changes are pushed to th
 
 - Build the Docker image for the Django application
 - Run a simple test to ensure the application loads correctly.
-- Push the Docker image to a container registry (such as Docker Hub or GitHub's Container Registry, etc.)
+- Push the Docker image to a container registry (such as Docker Hub)
 
 ![Screenshot](assets/workflow.jpg)
 
